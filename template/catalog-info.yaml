@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example
+  description: Example service
+  annotations:
+    github.com/project-slug: NazarSenchuk/apps/example
+    argocd/app-name: example-production
+    backstage.io/kubernetes-id: example
+spec:
+  type: service
+  lifecycle: production
+  owner: devops
+  system: default

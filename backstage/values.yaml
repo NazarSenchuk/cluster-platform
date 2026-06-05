@@ -1,0 +1,70 @@
+# infrastructure/backstage/values.yaml
+backstage:
+  backstage:
+    image:
+      registry: ghcr.io
+      repository: backstage/backstage
+      tag: latest           # pin to a specific version in production
+    
+    appConfig:
+      app:
+        title: Your Platform
+        baseUrl: https://backstage.ez-software.online
+      integrations:
+        github:
+          - host: github.com
+            token: ${GITHUB_TOKEN}
+      backend:
+        baseUrl: https://backstage.ez-software.online
+        cors:
+          origin: https://backstage.ez-software.online 
+        database:
+          client: better-sqlite3
+          connection: ':memory:'
+
+      auth:
+        providers:
+          guest:
+            dangerouslyAllowOutsideDevelopment: true
+
+
+    startupProbe:
+      httpGet:
+        path: /healthcheck
+        port: 7007
+      initialDelaySeconds: 120
+      periodSeconds: 10
+      failureThreshold: 30
+
+    readinessProbe:
+      httpGet:
+        path: /healthcheck
+        port: 7007
+      initialDelaySeconds: 120
+      periodSeconds: 10
+      failureThreshold: 3
+    extraEnvVarsSecrets:
+      - backstage-github-token
+    livenessProbe:
+      httpGet:
+        path: /healthcheck
+        port: 7007
+      initialDelaySeconds: 300
+      periodSeconds: 30
+      failureThreshold: 3
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+
+
+  postgresql:
+    enabled: false 
+ingress:
+  tls:
+    enabled: true
+  host: "backstage.ez-software.online"
+  path: "/"
+  enabled: true
+  className: "traefik"
