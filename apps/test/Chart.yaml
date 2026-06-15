@@ -1,6 +1,6 @@
 apiVersion: v2
-name: {{ appName }}
-description: 'Database deployment for {{ appName }}'
+name:  test
+description: 'Database deployment for test'
 type: application
 version: 1.0.0
 appVersion: 1.0.0
