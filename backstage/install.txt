@@ -1,0 +1,4 @@
+kubectl create secret generic backstage-github-token \
+  -n backstage \
+  --from-literal=GITHUB_TOKEN="ghp_your_token_here" \
+  --dry-run=client -o yaml | kubectl apply -f -
