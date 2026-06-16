@@ -18,7 +18,7 @@ server:
         secretName: argo-tls
 
 redis-ha:
-  enabled: true
+  enabled: false
 
 controller:
   replicas: 1

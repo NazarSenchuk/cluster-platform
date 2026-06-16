@@ -10,7 +10,7 @@ spec:
   goTemplateOptions: [ "missingkey=error" ]
   generators:
     - git:
-        repoURL: https://github.com/BlackbitDigitalCommerce/cluster-platform.git
+        repoURL: https://github.com/NazarSenchuk/cluster-platform.git
         revision: HEAD
         files:
           - path: "apps/**/database-config.json"
@@ -18,9 +18,9 @@ spec:
     metadata:
       name: "{{.path.basename}}-database"
     spec:
-      project: "apps"
+      project: "default"
       source:
-        repoURL: https://github.com/BlackbitDigitalCommerce/cluster-platform.git
+        repoURL: https://github.com/NazarSenchuk/cluster-platform.git
         targetRevision: HEAD
         path: "{{.path.path}}"
         helm:
@@ -42,7 +42,6 @@ spec:
             workload-type: "app"
             app-type: "database"
             app-name: "{{.path.basename}}"
-            debitor: "{{.blackbit.debitor}}"
             application: "{{.path.basename}}"
             environment: "production"
         syncOptions: # Sync options which modifies sync behavior

@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cnpg
+  name: secret-generator
   namespace: argocd
 spec:
   project: default
   source:
-    chart: cloudnative-pg
-    repoURL: https://cloudnative-pg.io/charts/
-    targetRevision: 0.28.3
+    chart: kubernetes-secret-generator
+    repoURL: https://helm.mittwald.de/
+    targetRevision: 3.4.1
     helm:
       releaseName: cnpg
   destination:
@@ -18,6 +18,7 @@ spec:
     automated:
       prune: true      # Automatically deletes resources removed from Git
       selfHeal: true
+
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
