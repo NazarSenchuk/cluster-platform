@@ -1,6 +1,6 @@
 db-chart:
   cluster:
-    name: cluster-template
+    name: cluster-test
     instances: 1
     bootstrap:
       initdb:
@@ -13,7 +13,7 @@ db-chart:
       size: 1Gi
   
   backup:
-    name: backup-example
+    name: backup-test
     schedule: "0 0 0 * * *"
     backupOwnerReference: self
     cluster:
