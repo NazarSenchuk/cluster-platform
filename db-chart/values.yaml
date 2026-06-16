@@ -4,9 +4,6 @@ cluster:
   bootstrap:
     initdb:
       database: app
-      owner: app
-      secret:
-        name: app-secret
 
   storage:
     size: 1Gi
